@@ -487,11 +487,11 @@ public abstract class Building implements MLSInterface {
         }
         
         public Land land() {
-            return new Land(size, address, country, schooldistrict, bedrooms, livingroom, totalrooms, expenses, builtdate, floorlevel, pool, cableready, furnished, gardensize, description);
+            return new Land(size, address, country, schooldistrict, bedrooms, livingroom, totalrooms, expenses, builtdate, floorlevel, pool, cableready, furnished, description);
         }
         
         public Mobeile_Floating mobeile_floating() {
-            return new Mobeile_Floating(size, address, country, schooldistrict, bedrooms, livingroom, totalrooms, expenses, builtdate, floorlevel, pool, cableready, furnished, hassecurity, hasgarden, gardensize, description);
+            return new Mobeile_Floating(size, address, country, schooldistrict, bedrooms, livingroom, totalrooms, expenses, builtdate, floorlevel, cableready, furnished, description);
         }
         
          public Semi_Detached semi_detached() {
