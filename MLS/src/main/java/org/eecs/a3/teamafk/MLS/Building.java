@@ -1,6 +1,6 @@
 package org.eecs.a3.teamafk.MLS;
 
-public abstract class Building {
+public abstract class Building implements MLSInterface {
     private String type = null;
     private int size = 0;
     private String address = null;
@@ -19,6 +19,15 @@ public abstract class Building {
     private boolean hasgarden = false;
     private int gardensize = 0;
     private String description = null;
+
+
+    /**
+     * Builder dummy
+     * @return a bulider of the property
+     */
+    public static BuildingBuilder builder() {
+        return new BuildingBuilder();
+    }
 
 
     /**
@@ -344,5 +353,142 @@ public abstract class Building {
      */
     protected String getdescription() {
         return description;
+    }
+
+    /**
+     * Help to convert Boolean to string
+     * @param something
+     * @return A string of yes or no
+     */
+    protected String stringhelper(boolean something){
+        if (something == true){
+            return "YES";
+        }
+        return "NO";
+    }
+
+    /**
+     * a function to collect useful info and construct a chart
+     * @return info in a chart of the building
+     */
+    public abstract String Display();
+
+
+    public static class BuildingBuilder {
+        private String type;
+        private int size;
+        private String address;
+        private String country;
+        private String schooldistrict;
+        private int bedrooms;
+        private int livingroom;
+        private int totalrooms;
+        private String expenses;
+        private int builtdate;
+        private int floorlevel;
+        private boolean pool;
+        private boolean cableready;
+        private boolean furnished;
+        private boolean hassecurity;
+        private boolean hasgarden;
+        private int gardensize;
+        private String description;
+
+        BuildingBuilder() {
+        }
+
+        public BuildingBuilder type(String type) {
+            this.type = type;
+            return this;
+        }
+
+        public BuildingBuilder size(int size) {
+            this.size = size;
+            return this;
+        }
+
+        public BuildingBuilder address(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public BuildingBuilder country(String country) {
+            this.country = country;
+            return this;
+        }
+
+        public BuildingBuilder schooldistrict(String schooldistrict) {
+            this.schooldistrict = schooldistrict;
+            return this;
+        }
+
+        public BuildingBuilder bedrooms(int bedrooms) {
+            this.bedrooms = bedrooms;
+            return this;
+        }
+
+        public BuildingBuilder livingroom(int livingroom) {
+            this.livingroom = livingroom;
+            return this;
+        }
+
+        public BuildingBuilder totalrooms(int totalrooms) {
+            this.totalrooms = totalrooms;
+            return this;
+        }
+
+        public BuildingBuilder expenses(String expenses) {
+            this.expenses = expenses;
+            return this;
+        }
+
+        public BuildingBuilder builtdate(int builtdate) {
+            this.builtdate = builtdate;
+            return this;
+        }
+
+        public BuildingBuilder floorlevel(int floorlevel) {
+            this.floorlevel = floorlevel;
+            return this;
+        }
+
+        public BuildingBuilder pool(boolean pool) {
+            this.pool = pool;
+            return this;
+        }
+
+        public BuildingBuilder cableready(boolean cableready) {
+            this.cableready = cableready;
+            return this;
+        }
+
+        public BuildingBuilder furnished(boolean furnished) {
+            this.furnished = furnished;
+            return this;
+        }
+
+        public BuildingBuilder hassecurity(boolean hassecurity) {
+            this.hassecurity = hassecurity;
+            return this;
+        }
+
+        public BuildingBuilder hasgarden(boolean hasgarden) {
+            this.hasgarden = hasgarden;
+            return this;
+        }
+
+        public BuildingBuilder gardensize(int gardensize) {
+            this.gardensize = gardensize;
+            return this;
+        }
+
+        public BuildingBuilder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public BuildCondo buildcondo() {
+            return new BuildCondo(size, address, country, schooldistrict, bedrooms, livingroom, totalrooms, expenses, builtdate, floorlevel, pool, cableready, furnished, hassecurity, hasgarden, gardensize, description);
+        }
     }
 }
