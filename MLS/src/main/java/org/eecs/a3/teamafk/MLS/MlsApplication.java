@@ -239,8 +239,11 @@ public class MlsApplication {
 	 * The actual method for searching owner
 	 * @param id the id for searching owner
 	 */
-	public MLS mlsLookup(UUID id) {
+	@RequestMapping(value = "/mls", method = RequestMethod.GET)
+	public @ResponseBody
+	MLS mlsLookup(@RequestParam(value = "id", required = true)UUID id) {
 		if (SingletonCache.getInstance().getByID(id) != null){
+			System.out.println("Cached");
 			return SingletonCache.getInstance().getByID(id);
 		}
 		try {
