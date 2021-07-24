@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.*;
 import java.util.Date;
 
+/**
+ * WEB API controller
+ * @author Ken Ren
+ * @version 1.0
+ */
 @Controller
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class MlsApplication {
@@ -21,6 +26,9 @@ public class MlsApplication {
 	Statement stmt = null;
 	String sql;
 
+	/**
+	 * Start SpringBoot and Test Connection
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(MlsApplication.class, args);
 		Connection conn = null;
@@ -36,6 +44,10 @@ public class MlsApplication {
 		}
 	}
 
+	/**
+	 * A helloword tester
+	 * @param name a name for input
+	 */
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	public @ResponseBody
 	String sayHello(@RequestParam(value = "name", required = false, defaultValue = "Stranger") String name)
@@ -52,9 +64,24 @@ public class MlsApplication {
 	}
 	*/
 
-	@RequestMapping(value = "/building", method = RequestMethod.GET)
+	/**
+	 * Display the inside building search result
+	 * @param id the id for searching building
+	 */
+	@RequestMapping(value = "/building/display", method = RequestMethod.GET)
 	public @ResponseBody
-	String mlsLookup(@RequestParam(value = "id", required = true) int id) {
+	String buildingdisplay(@RequestParam(value = "id", required = true) int id) {
+		if (buildingLookup(id)==null){
+			return "No Result Found";
+		}
+		return buildingLookup(id).Display();
+	}
+
+	/**
+	 * The actual method for searching building
+	 * @param id the id for searching building
+	 */
+	public Building buildingLookup(int id) {
 		try {
 			try {
 				Class.forName(JDBC_DRIVER);
@@ -67,6 +94,9 @@ public class MlsApplication {
 			stmt = conn.createStatement();
 			sql = "SELECT * FROM building WHERE id="+id;
 			ResultSet rs = stmt.executeQuery(sql);
+			if(rs==null){
+				return null;
+			}
 			while(rs.next()){
 				String type = rs.getString("type");
 				int size = rs.getInt("size");
@@ -77,7 +107,10 @@ public class MlsApplication {
 				int livingroom = rs.getInt("livingrooms");
 				int totalrooms = rs.getInt("totalrooms");
 				String expenses = rs.getString("expenses");
-				String builtdate = rs.getDate("builtdate").toString();
+				String builtdate ="NOT AVAILABLE";
+				if(rs.getDate("builtdate")!=null){
+					builtdate = rs.getDate("builtdate").toString();
+				}
 				int floorlevel = rs.getInt("floorlevel");;
 				boolean pool = rs.getBoolean("pool");
 				boolean cableready = rs.getBoolean("cableready");
@@ -89,14 +122,63 @@ public class MlsApplication {
 				switch (type){
 					case "Condo":
 						BuildCondo condo = new Building.BuildingBuilder().type(type).size(size).address(address).country(country).schooldistrict(schooldistrict).bedrooms(bedrooms).livingroom(livingroom).totalrooms(totalrooms).expenses(expenses).builtdate(builtdate).floorlevel(floorlevel).pool(pool).cableready(cableready).furnished(furnished).hassecurity(hassecurity).hasgarden(hasgarden).gardensize(gardensize).description(description).buildcondo();
-						return condo.Display();
+						return condo;
 				}
 			}
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();
 		}
-		return "Probably, this is a Bug";
+		return null;
 	}
+
+	/**
+	 * Display the inside building search result
+	 * @param id the id for searching building
+	 */
+	@RequestMapping(value = "/owner/display", method = RequestMethod.GET)
+	public @ResponseBody
+	String ownerdisplay(@RequestParam(value = "id", required = true) int id) {
+		if (ownerLookup(id)==null){
+			return "No Result Found";
+		}
+		return ownerLookup(id).Display();
+	}
+
+	/**
+	 * The actual method for searching owner
+	 * @param id the id for searching owner
+	 */
+	public Owner ownerLookup(int id) {
+		try {
+			try {
+				Class.forName(JDBC_DRIVER);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			System.out.println("Connecting...");
+			conn = DriverManager.getConnection(DB_URL,USER,PASS);
+			System.out.println("Succeeded！");
+			stmt = conn.createStatement();
+			sql = "SELECT * FROM owner WHERE id="+id;
+			ResultSet rs = stmt.executeQuery(sql);
+			if(rs==null){
+				return null;
+			}
+			while(rs.next()){
+				String firstname = rs.getString("firstname");
+				String lastname = rs.getString("lastname");
+				String phone = rs.getString("phone");
+				String email = rs.getString("email");
+				Owner owner = new Owner.Builder().firstnameOfOwner(firstname).lastnameOfOwner(lastname).phoneNumber(phone).emailAddress(email).build();
+				return owner;
+			}
+		} catch (SQLException throwables) {
+			throwables.printStackTrace();
+		}
+		return null;
+	}
+
+
 
 }
 
