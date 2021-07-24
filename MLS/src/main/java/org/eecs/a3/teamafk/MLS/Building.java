@@ -482,24 +482,6 @@ public abstract class Building implements MLSInterface {
             return new BuildCondo(size, address, country, schooldistrict, bedrooms, livingroom, totalrooms, expenses, builtdate, floorlevel, pool, cableready, furnished, hassecurity, hasgarden, gardensize, description);
         }
         
-        public Detached detached() {
-            return new Detached(size, address, country, schooldistrict, bedrooms, livingroom, totalrooms, expenses, builtdate, floorlevel, pool, cableready, furnished, hassecurity, hasgarden, gardensize, description);
-        }
-        
-        public Land land() {
-            return new Land(size, address, country, schooldistrict, bedrooms, livingroom, totalrooms, expenses, builtdate, floorlevel, pool, cableready, furnished, description);
-        }
-        
-        public Mobeile_Floating mobeile_floating() {
-            return new Mobeile_Floating(size, address, country, schooldistrict, bedrooms, livingroom, totalrooms, expenses, builtdate, floorlevel, cableready, furnished, description);
-        }
-        
-         public Semi_Detached semi_detached() {
-            return new Semi_Detached(size, address, country, schooldistrict, bedrooms, livingroom, totalrooms, expenses, builtdate, floorlevel, pool, cableready, furnished, hassecurity, hasgarden, gardensize, description);
-        }
-        
-         public Townhouse townhouse() {
-            return new townhouse(size, address, country, schooldistrict, bedrooms, livingroom, totalrooms, expenses, builtdate, floorlevel, cableready, furnished, hassecurity, hasgarden, gardensize, description);
-        }
+       
     }
 }
