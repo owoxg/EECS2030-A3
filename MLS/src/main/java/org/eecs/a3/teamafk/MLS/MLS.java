@@ -1,8 +1,5 @@
 package org.eecs.a3.teamafk.MLS;
-
-
 import java.util.UUID;
-
 
 
 /**
@@ -10,7 +7,7 @@ import java.util.UUID;
  * @author Ken Ren
  * @version 1.0
  */
-public class MLS {
+public class MLS implements MLSInterface{
     private UUID uuid = null;
     private Owner owner = null;
     private Building building = null;
@@ -18,8 +15,8 @@ public class MLS {
     private String mlsname = null;
     private String listtype = null;
     private int price = 0;
-    private int listdate = 0;
-    private int enddate = 0;
+    private String listdate = "";
+    private String enddate = null;
     private boolean sold = false;
     private String brokerage = null;
     private String listingurl = null;
@@ -92,7 +89,7 @@ public class MLS {
      * Set the enddate of the property
      * @param enddate of the property
      */
-    protected void setenddate(int enddate) {
+    protected void setenddate(String enddate) {
         this.enddate = enddate;
     }
 
@@ -100,7 +97,7 @@ public class MLS {
      * Get the enddate of the property
      * @return the enddate of the property
      */
-    protected int getenddate() {
+    protected String getenddate() {
         return enddate;
     }
 
@@ -152,6 +149,35 @@ public class MLS {
         return listingurl;
     }
 
+    /**
+     * Create MLS based on string
+     * @return a String of MLS
+     */
+    @Override
+    public String Display() {
+        MlsApplication M = new MlsApplication();
+        String s = "";
+        s = s + "Listing UUID: "+uuid+"<br/><br/>";
+        s = s + mlsname+"<br/>";
+        s = s + "Listing Type: "+listtype+"<br/>";
+        s = s + "Listing Date: "+listdate+"<br/>";
+        if (enddate!=null){
+            s = s + "End Date: "+enddate+"<br/>";
+            if (sold!=false){
+                s = s + "Sold: Yes<br/>";
+            }
+            else {
+                s = s + "Sold: No<br/>";
+            }
+        }
+        s = s + "Brokerage: "+brokerage+"<br/>";
+        s = s + "Listing URL: "+listingurl+"<br/>";
+        s = s + "<br/><br/>"+owner.Display();
+        s = s + "<br/><br/>"+building.Display();
+        s = s + "<br/><br/>"+parking.Display();
+
+        return s;
+    }
 
 
     /**
@@ -166,16 +192,12 @@ public class MLS {
         private String mlsname = null;
         private String listtype = null;
         private int price = 0;
-        private int listdate = 0;
-        private int enddate = 0;
+        private String listdate = "";
+        private String enddate = null;
         private boolean sold = false;
         private String brokerage = null;
         private String listingurl = null;
 
-        /**
-         * Start Building a MLS
-         * @param id the id of the MLS
-         */
         public Builder(UUID id) {
             this.uuid = id;
         }
@@ -210,8 +232,18 @@ public class MLS {
             return this;
         }
 
-        public Builder Listdateis7(int listdate) {
+        public Builder Listdateis7(String listdate) {
             this.listdate = listdate;
+            return this;
+        }
+
+        public Builder enddateis7a(String enddate){
+            this.enddate = enddate;
+            return this;
+        }
+
+        public Builder soldis7b(Boolean sold){
+            this.sold = sold;
             return this;
         }
 
@@ -235,7 +267,24 @@ public class MLS {
             mls.listtype = this.listtype;
             mls.price = this.price;
             mls.listdate = this.listdate;
-            mls.enddate = 0;
+            mls.enddate = this.enddate;
+            mls.sold = this.sold;
+            mls.brokerage = this.brokerage;
+            mls.listingurl = this.listingurl;
+            return mls;
+        }
+
+        public MLS buildnew() {
+            MLS mls = new MLS();
+            mls.uuid = this.uuid;
+            mls.owner = this.owner;
+            mls.building = this.building;
+            mls.parking = this.parking;
+            mls.mlsname = this.mlsname;
+            mls.listtype = this.listtype;
+            mls.price = this.price;
+            mls.listdate = this.listdate;
+            mls.enddate = "";
             mls.sold = false;
             mls.brokerage = this.brokerage;
             mls.listingurl = this.listingurl;
