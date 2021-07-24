@@ -10,7 +10,7 @@ public abstract class Building implements MLSInterface {
     private int livingroom = 0;
     private int totalrooms = 0;
     private String expenses = null;
-    private int builtdate = 0;
+    private String builtdate = "";
     private int floorlevel = 0;
     private boolean pool = false;
     private boolean cableready = false;
@@ -19,15 +19,6 @@ public abstract class Building implements MLSInterface {
     private boolean hasgarden = false;
     private int gardensize = 0;
     private String description = null;
-
-
-    /**
-     * Builder dummy
-     * @return a bulider of the property
-     */
-    public static BuildingBuilder builder() {
-        return new BuildingBuilder();
-    }
 
 
     /**
@@ -194,7 +185,7 @@ public abstract class Building implements MLSInterface {
      * Set the builtdate  of the property
      * @param builtdate of the property
      */
-    protected void setbuiltdate (int builtdate) {
+    protected void setbuiltdate (String builtdate) {
         this.builtdate =  builtdate;
     }
 
@@ -204,7 +195,7 @@ public abstract class Building implements MLSInterface {
      *Get the builtdate of the property
      * @return builtdate of the property
      */
-    protected int getbuiltdate() {
+    protected String getbuiltdate() {
         return builtdate;
     }
 
@@ -384,7 +375,7 @@ public abstract class Building implements MLSInterface {
         private int livingroom;
         private int totalrooms;
         private String expenses;
-        private int builtdate;
+        private String builtdate;
         private int floorlevel;
         private boolean pool;
         private boolean cableready;
@@ -442,7 +433,7 @@ public abstract class Building implements MLSInterface {
             return this;
         }
 
-        public BuildingBuilder builtdate(int builtdate) {
+        public BuildingBuilder builtdate(String builtdate) {
             this.builtdate = builtdate;
             return this;
         }
