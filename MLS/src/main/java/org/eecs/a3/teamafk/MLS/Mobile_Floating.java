@@ -10,7 +10,7 @@ public class Mobeile_Floating extends Building implements MLSInterface{
     private int livingroom = 0;
     private int totalrooms = 0;
     private String expenses = null;
-    private int builtdate = 0;
+    private String builtdate = "";
     private int floorlevel = 0;
     private boolean pool = false;
     private boolean cableready = false;
@@ -20,7 +20,7 @@ public class Mobeile_Floating extends Building implements MLSInterface{
     private int gardensize = 0;
     private String description = null;
 
-    BuildCondo(int size, String address, String country, String schooldistrict, int bedrooms, int livingroom, int totalrooms, String expenses, int builtdate, int floorlevel, boolean pool, boolean cableready, boolean furnished, boolean hassecurity, boolean hasgarden, int gardensize, String description) {
+    BuildCondo(int size, String address, String country, String schooldistrict, int bedrooms, int livingroom, int totalrooms, String expenses, String builtdate, int floorlevel, boolean pool, boolean cableready, boolean furnished, boolean hassecurity, boolean hasgarden, int gardensize, String description) {
         this.size = size;
         this.address = address;
         this.country = country;
@@ -41,27 +41,24 @@ public class Mobeile_Floating extends Building implements MLSInterface{
     }
 
     @Override
-    public String Display(){
-        String s="The MLS Building information：\n";
-        s=s+"Property Type: Mobeile_Floating\n";
-        s=s+"Property Address: "+address+"\n";
-        s=s+"Property Country: "+country+"\n";
-        s=s+"Property School District: "+schooldistrict+"\n\n";
-        s=s+"Property Country Detail:\n";
-        s=s+"Total Area: "+size+"sq.ft\n";
-        s=s+bedrooms+"Bedrooms\n";
-        s=s+livingroom+"Livingrooms\n";
-        s=s+totalrooms+"Total\n";
-        s=s+"Major Expenses for holding"+expenses+"\n";
-        s=s+"Built Date: "+builtdate+"\n";
-        s=s+"Unit Level: "+floorlevel+"\n";
-        s=s+"Pool: "+stringhelper(pool)+"\n";
-        s=s+"Cable: "+stringhelper(cableready)+"\n";
-        s=s+"Furnished: "+stringhelper(furnished)+"\n";
-        s=s+"Security: "+stringhelper(hassecurity)+"\n";
-        s=s+"Garden: "+stringhelper(hasgarden)+"\n\n";
-        s=s+"Description:\n"+description;
-        return s;
-    }
+	public String Display(){
+		String s="General information：<br/>";
+		s=s+"Property Type: Mobile_Floating<br/>";
+		s=s+"Property Address: "+address+"<br/>";
+		s=s+"Property Country: "+country+"<br/>";
+		s=s+"Property School District: "+schooldistrict+"<br/><br/>";
+		s=s+"Property Detail:<br/>";
+		s=s+"Total Area: "+size+"sq.ft<br/>";
+		s=s+"Bedrooms: "+bedrooms+"<br/>";
+		s=s+"Livingrooms: "+livingroom+"<br/>";
+		s=s+"Totalrooms: "+totalrooms+"<br/>";
+		s=s+"Major Expenses for holding: "+expenses+"<br/>";
+		s=s+"Built Date: "+builtdate+"<br/>";
+		s=s+"Unit Level: "+floorlevel+"<br/>";
+		s=s+"Cable: "+stringhelper(cableready)+"<br/>";
+		s=s+"Furnished: "+stringhelper(furnished)+"<br/>";
+		s=s+"Description:<br/>"+description;
+		return s;
+	}
 
 }
