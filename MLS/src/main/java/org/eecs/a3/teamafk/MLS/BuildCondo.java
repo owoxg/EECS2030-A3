@@ -41,13 +41,197 @@ public class BuildCondo extends Building implements MLSInterface{
     }
 
     @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public int getSize() {
+        return size;
+    }
+
+    @Override
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    @Override
+    public String getAddress() {
+        return address;
+    }
+
+    @Override
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Override
+    public String getCountry() {
+        return country;
+    }
+
+    @Override
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    @Override
+    public String getSchooldistrict() {
+        return schooldistrict;
+    }
+
+    @Override
+    public void setSchooldistrict(String schooldistrict) {
+        this.schooldistrict = schooldistrict;
+    }
+
+    @Override
+    public int getBedrooms() {
+        return bedrooms;
+    }
+
+    @Override
+    public void setBedrooms(int bedrooms) {
+        this.bedrooms = bedrooms;
+    }
+
+    @Override
+    public int getLivingroom() {
+        return livingroom;
+    }
+
+    @Override
+    public void setLivingroom(int livingroom) {
+        this.livingroom = livingroom;
+    }
+
+    @Override
+    public int getTotalrooms() {
+        return totalrooms;
+    }
+
+    @Override
+    public void setTotalrooms(int totalrooms) {
+        this.totalrooms = totalrooms;
+    }
+
+    @Override
+    public String getExpenses() {
+        return expenses;
+    }
+
+    @Override
+    public void setExpenses(String expenses) {
+        this.expenses = expenses;
+    }
+
+    @Override
+    public String getBuiltdate() {
+        return builtdate;
+    }
+
+    @Override
+    public void setBuiltdate(String builtdate) {
+        this.builtdate = builtdate;
+    }
+
+    @Override
+    public int getFloorlevel() {
+        return floorlevel;
+    }
+
+    @Override
+    public void setFloorlevel(int floorlevel) {
+        this.floorlevel = floorlevel;
+    }
+
+    @Override
+    public boolean isPool() {
+        return pool;
+    }
+
+    @Override
+    public void setPool(boolean pool) {
+        this.pool = pool;
+    }
+
+    @Override
+    public boolean isCableready() {
+        return cableready;
+    }
+
+    @Override
+    public void setCableready(boolean cableready) {
+        this.cableready = cableready;
+    }
+
+    @Override
+    public boolean isFurnished() {
+        return furnished;
+    }
+
+    @Override
+    public void setFurnished(boolean furnished) {
+        this.furnished = furnished;
+    }
+
+    @Override
+    public boolean isHassecurity() {
+        return hassecurity;
+    }
+
+    @Override
+    public void setHassecurity(boolean hassecurity) {
+        this.hassecurity = hassecurity;
+    }
+
+    @Override
+    public boolean isHasgarden() {
+        return hasgarden;
+    }
+
+    @Override
+    public void setHasgarden(boolean hasgarden) {
+        this.hasgarden = hasgarden;
+    }
+
+    @Override
+    public int getGardensize() {
+        return gardensize;
+    }
+
+    @Override
+    public void setGardensize(int gardensize) {
+        this.gardensize = gardensize;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * a function to collect useful info and construct a chart
+     * @return info in a chart of the building
+     */
+    @Override
     public String Display(){
-        String s="General information：<br/>";
+        String s="<h3>General information</h3><br/>";
         s=s+"Property Type: Condo<br/>";
         s=s+"Property Address: "+address+"<br/>";
         s=s+"Property Country: "+country+"<br/>";
         s=s+"Property School District: "+schooldistrict+"<br/><br/>";
-        s=s+"Property Detail:<br/>";
+        s=s+"<h3>Property Detail:</h3><br/>";
         s=s+"Total Area: "+size+"sq.ft<br/>";
         s=s+"Bedrooms: "+bedrooms+"<br/>";
         s=s+"Livingrooms: "+livingroom+"<br/>";
@@ -60,7 +244,7 @@ public class BuildCondo extends Building implements MLSInterface{
         s=s+"Furnished: "+stringhelper(furnished)+"<br/>";
         s=s+"Security: "+stringhelper(hassecurity)+"<br/>";
         s=s+"Garden: "+stringhelper(hasgarden)+"<br/><br/>";
-        s=s+"Description:<br/>"+description;
+        s=s+"<h3>Description:</h3><br/>"+description;
         return s;
     }
 
