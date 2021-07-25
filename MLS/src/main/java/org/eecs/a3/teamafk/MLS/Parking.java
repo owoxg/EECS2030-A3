@@ -9,7 +9,7 @@ public class Parking implements MLSInterface{
 
 
     /**
-     * Set the ID of the property
+     * Set the size of the property
      * @param size of the property
      */
     public void setSize(int size) {
@@ -17,18 +17,15 @@ public class Parking implements MLSInterface{
     }
 
     /**
-     * Set the ID of the property
+     * Set the type of the property
      * @param type of the property
      */
-    public void setType(String type) throws Exception {
-        if(type.length()>30){
-            throw new Exception("It needs to be less than 30 characters!");
-        }
+    public void setType(String type) {
         this.type = type;
     }
 
     /**
-     * Set the ID of the property
+     * Set the isRVok of the property
      * @param risRVok of the property
      */
     public void setIsRVok(boolean risRVok) {
